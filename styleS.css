@@ -8,6 +8,11 @@ html, body {
   margin: 0;
 }
 
+button {
+  border: 1px solid #383636;
+  background-color: inherit;
+}
+
 .header {
   border: 1px solid #000;
   padding: 25px;
@@ -31,12 +36,18 @@ html, body {
 .goods-item {
   border: 1px solid #000000;
   padding: 20px;
-  width: 30%;
+  width: 40%;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
   margin-bottom: 25px;
+}
+.goods-item .add-to-cart {
+  margin-bottom: 15px;
+  margin-top: auto;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=styleS.css.map */
