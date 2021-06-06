@@ -1,7 +1,14 @@
 <template>
   <div v-show="isVisibleCart" class="cart-list">
-    <div class="goods-container"></div>
-    <button class="clear-cart btn">Очистить корзину</button>
+    <div class="goods-container">
+      <div v-for="item in cartGoods" :key="item.id_product" class="goods-item">
+        <h3>{{item.product_name}}</h3>
+        <p>{{item.price}}</p>
+        <p>{{item.quantity}}</p>
+        <button class="clear-cart btn" @click="onClickItem(item)">Удалить</button>
+      </div>
+    </div>
+    <button class="clear-cart btn" @click="onClickCart">Очистить корзину</button>
   </div>
 </template>
 
@@ -13,7 +20,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    cartGoods: {
+      type: Array,
+      default: () => [],
+    }
+  },
+  methods: {
+    onClickItem(item){
+      this.$emit('delete-from-cart', item);
+    },
+    onClickCart(){
+      this.$emit('clear-cart');
+    },
+
   }
+
 }
 </script>
 
