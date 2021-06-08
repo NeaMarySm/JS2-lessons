@@ -2,7 +2,7 @@
   <li class="todo-item">
     <input type="checkbox" v-model="toDoItem.done" :id="toDoItem.id">
     <label :for="toDoItem.id"><span class="todo-text" :class="{ completed: toDoItem.done}">{{toDoItem.title}}</span></label>
-    <button @click="deleteItem">X</button>
+    <button @click="$emit('delete-item')">X</button>
   </li>
 </template>
 
@@ -18,12 +18,6 @@ export default {
       default: ()=>{},
     }
   },
-  methods: {
-    deleteItem(){
-
-    }
-
-  }
 }
 </script>
 

@@ -3,7 +3,7 @@
     <ToDoHeader/>
     <ToDoInput @add-todo="addTodo"/>
     <ToDoTab @filter-todo="filterTodos"/>
-    <ToDoList :todoList="filteredTodos"/>
+    <ToDoList :todoList="filteredTodos" @delete-item="deleteTodo"/>
   </div>
 </template>
 
@@ -42,6 +42,10 @@ export default {
       } else {
         this.filteredTodos = this.todoList.filter(item => item.done === value);
       }
+    },
+    deleteTodo(id){
+      let itemToDeleteIndex = this.todoList.findIndex(item => item.id === id);
+      this.todoList.splice(itemToDeleteIndex,1);
     }
   },
 }
