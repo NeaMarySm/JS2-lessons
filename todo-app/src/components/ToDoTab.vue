@@ -1,11 +1,8 @@
 <template>
 <div class="tab-area">
-  <input type="radio" name="tab" class="tab-radio" id="all" @click="filterTodos('all')" checked>
-  <label for="all">All </label>
-  <input type="radio" name="tab" class="tab-radio" id="current" @click="filterTodos(false)">
-  <label for="current">Current </label>
-  <input type="radio" name="tab" class="tab-radio" id="completed" @click="filterTodos(true)">
-  <label for="completed">Completed </label>
+  <button class="tab-btn" id="all" @click="filterTodos('all')">All</button>
+  <button class="tab-btn" id="current" @click="filterTodos(false)">Current</button>
+  <button class="tab-btn" id="completed" @click="filterTodos(true)">Completed</button>
 </div>
 </template>
 
@@ -32,8 +29,9 @@ export default {
   display: flex;
   justify-content: flex-start;
 }
-.tab-radio{
-  padding: 5px;
+.tab-btn{
+  border-bottom: 2px solid orange;
+  margin-left: 15px;
 }
 
 

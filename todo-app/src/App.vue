@@ -8,8 +8,6 @@
 </template>
 
 <script>
-
-
 import ToDoHeader from "@/components/ToDoHeader";
 import ToDoList from "@/components/ToDoList";
 import ToDoInput from "@/components/ToDoInput";
@@ -31,6 +29,9 @@ export default {
     filteredTodos: [],
 
   }),
+  mounted() {
+    this.filterTodos();
+  },
   methods: {
     addTodo(item){
       this.todoList.push(item);
@@ -42,9 +43,7 @@ export default {
         this.filteredTodos = this.todoList.filter(item => item.done === value);
       }
     }
-
   },
-
 }
 </script>
 
@@ -55,6 +54,12 @@ export default {
 }
 html, body {
   box-sizing: border-box;
+}
+button {
+  border: none;
+  background-color: inherit;
+  padding: 5px;
+  cursor: pointer;
 }
 
 #app {
