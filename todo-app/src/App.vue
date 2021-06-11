@@ -4,6 +4,7 @@
     <ToDoInput @add-todo="addTodo"/>
     <ToDoTab @filter-todo="filterTodos"/>
     <ToDoList :todoList="filteredTodos" @delete-item="deleteTodo"/>
+    <ToDoDeleteButtons @delete-all="deleteAll" @delete-done="deleteDone"/>
   </div>
 </template>
 
@@ -12,9 +13,11 @@ import ToDoHeader from "@/components/ToDoHeader";
 import ToDoList from "@/components/ToDoList";
 import ToDoInput from "@/components/ToDoInput";
 import ToDoTab from "@/components/ToDoTab";
+import ToDoDeleteButtons from "@/components/ToDoDeleteButtons";
 export default {
   name: 'App',
   components: {
+    ToDoDeleteButtons,
     ToDoInput,
     ToDoList,
     ToDoHeader,
@@ -46,7 +49,16 @@ export default {
     deleteTodo(id){
       let itemToDeleteIndex = this.todoList.findIndex(item => item.id === id);
       this.todoList.splice(itemToDeleteIndex,1);
-    }
+    },
+    deleteAll(){
+      this.todoList = [];
+      this.filterTodos();
+    },
+    deleteDone(){
+      this.todoList = this.todoList.filter(item => item.done !== true);
+      this.filterTodos();
+    },
+
   },
 }
 </script>

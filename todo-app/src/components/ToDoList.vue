@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ToDoItem from "@/components/ToDoItem";
+import ToDoItem from "@/components/ToDoListItem";
 export default {
   name: "ToDoList",
   components: {ToDoItem},
