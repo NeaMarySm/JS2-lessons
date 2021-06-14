@@ -14,6 +14,7 @@ import ToDoList from "@/components/ToDoList";
 import ToDoInput from "@/components/ToDoInput";
 import ToDoTab from "@/components/ToDoTab";
 import ToDoDeleteButtons from "@/components/ToDoDeleteButtons";
+const API_URL = 'http://localhost:3000'
 export default {
   name: 'App',
   components: {
@@ -25,19 +26,54 @@ export default {
   },
   data: () => ({
     todoList: [
-        {title: 'Clean Windows', id:12345, done:false},
-        {title: 'Buy Apples', id:12385, done:false},
-        {title: 'Wash Dog', id:12379, done:false},
+        // {title: 'Clean Windows', id:12345, done:false},
+        // {title: 'Buy Apples', id:12385, done:false},
+        // {title: 'Wash Dog', id:12379, done:false},
     ],
     filteredTodos: [],
 
   }),
   mounted() {
+    this.getTodoList();
     this.filterTodos();
   },
   methods: {
+    makeGETRequest(url) {
+      return fetch(url)
+          .then((data) => data.json())
+    },
+    makePOSTRequest(url, data) {
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+          .then((data) => data.json())
+    },
+    makeDeleteRequest(url, data) {
+      return fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+          .then((data) => data.json())
+    },
+    getTodoList(){
+      this.makeGETRequest(`${API_URL}/todoList`)
+        .then(data => {
+          this.todoList = data;
+          this.filteredTodos = data;
+        })
+
+    },
     addTodo(item){
-      this.todoList.push(item);
+      this.makePOSTRequest(`${API_URL}/addToList`, item)
+      .then(() => this.getTodoList());
+
     },
     filterTodos(value = 'all'){
       if (value === 'all'){
@@ -46,13 +82,14 @@ export default {
         this.filteredTodos = this.todoList.filter(item => item.done === value);
       }
     },
-    deleteTodo(id){
-      let itemToDeleteIndex = this.todoList.findIndex(item => item.id === id);
-      this.todoList.splice(itemToDeleteIndex,1);
+    deleteTodo(item){
+      this.makeDeleteRequest(`${API_URL}/deleteTodo`, item)
+        .then(() => this.getTodoList())
+
     },
     deleteAll(){
-      this.todoList = [];
-      this.filterTodos();
+      this.makeDeleteRequest(`${API_URL}/deleteAll`)
+          .then(() => this.getTodoList())
     },
     deleteDone(){
       this.todoList = this.todoList.filter(item => item.done !== true);
@@ -70,6 +107,7 @@ export default {
 }
 html, body {
   box-sizing: border-box;
+  padding: 15px;
 }
 button {
   border: none;

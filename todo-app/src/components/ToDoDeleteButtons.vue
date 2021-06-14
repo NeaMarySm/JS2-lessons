@@ -19,6 +19,12 @@ export default {
   justify-content: flex-end;
 }
 .delete-btn{
-  padding: 5px;
+  padding: 5px 15px;
+  color: #383636;
+}
+.delete-btn:hover {
+  border-bottom: 5px solid orange;
+  color: black;
+  padding-bottom: 0;
 }
 </style>

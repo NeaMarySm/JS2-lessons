@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h2>ToDo or not ToDo</h2>
+    <h2>ToDoApp</h2>
   </header>
 </template>
 
@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style scoped>
-
+h2 {
+  margin-bottom: 15px;
+}
 </style>

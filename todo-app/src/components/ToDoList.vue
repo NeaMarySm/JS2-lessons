@@ -1,7 +1,7 @@
 <template>
   <main>
     <ul v-for="item in todoList" :key="item.id" class="todo-list">
-      <ToDoItem :toDoItem="item" @delete-item="$emit('delete-item', item.id)"/>
+      <ToDoItem :toDoItem="item" @delete-item="$emit('delete-item', item)"/>
 
     </ul>
   </main>
