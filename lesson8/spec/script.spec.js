@@ -1,4 +1,4 @@
-const script = require('../script');
+const script = require('../module-calc');
 const calculator = script.calculator;
 
 describe('Метод addition', () => {
